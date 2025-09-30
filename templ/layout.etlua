@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title> <%= title %> </title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div id="header">
+      <div id="nav">
+        <span id="title">nesktf</span>
+
+        <div id="navlist">
+          <b><a class="navlink" href="home.html">home</a></b>
+          <a class="navlink" href="about.html">about</a>
+          <a class="navlink" href="projects.html">projects</a>
+          <a class="navlink" href="misc.html">misc</a>
+          <a class="navlink" href="blog.html">blog</a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div id="content">
+        <%- content %>
+      </div>
+    </main>
+
+    <footer>
+      <p> Site compiled at <%= meta.comp_date %> </p>
+    </footer>
+  </body>
+</html>
