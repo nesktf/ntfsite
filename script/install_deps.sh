@@ -12,3 +12,4 @@ luainstall() {
 luainstall fennel
 luainstall etlua
 luainstall luafilesystem
+luainstall lunamark

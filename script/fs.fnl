@@ -26,4 +26,8 @@
            true)
     (nil _err) false))
 
-{: read-file : write-file : list-dir : file-exists?}
+(fn cat-path [...]
+  (let [dirs [...]]
+    (table.concat dirs "/")))
+
+{: read-file : write-file : list-dir : file-exists? : cat-path}
