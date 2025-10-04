@@ -1,4 +1,5 @@
 (local lfs (require :lfs))
+(local filetype {:page 1 :file 2})
 
 (λ read-file [path]
   (case (io.open path "r")
@@ -30,4 +31,27 @@
   (let [dirs [...]]
     (table.concat dirs "/")))
 
-{: read-file : write-file : list-dir : file-exists? : cat-path}
+(λ split-ext [filename]
+  (filename:match "^(.+)%.(.+)$"))
+
+(λ copy-file [from to]
+  (case-try (io.open from "rb")
+    from-file (values (io.open to "w") from-file)
+    (to-file from-file) (let [content (from-file:read "*all")]
+                          (to-file:write content)
+                          (to-file:close)
+                          (from-file:close)
+                          content)
+    (catch (nil err) (values nil err) (nil err file)
+           (do
+             (file:close)
+             (values nil err)))))
+
+{: read-file
+ : write-file
+ : list-dir
+ : file-exists?
+ : cat-path
+ : split-ext
+ : filetype
+ : copy-file}

@@ -31,7 +31,7 @@
     </main>
 
     <footer>
-      <p> Site compiled at <%= meta.comp_date %> </p>
+      <p> Site compiled at <%= comp_date %> </p>
     </footer>
   </body>
 </html>

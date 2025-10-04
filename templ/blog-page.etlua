@@ -1,0 +1,3 @@
+<div id="md-content">
+  <%- md_content %>
+</div>
