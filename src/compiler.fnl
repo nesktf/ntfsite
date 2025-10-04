@@ -25,8 +25,9 @@
       (let [(name ext) (split-ext filename)]
         (when (= ext "etlua")
           (print (string.format "- Compiling template \"%s\"..." name))
-          (set (. templs name)
-               (etlua.compile (read-file (cat-path templ-dir filename)))))))
+          (case (etlua.compile (read-file (cat-path templ-dir filename)))
+            compiled (set (. templs name) compiled)
+            (nil err) (error err)))))
     (assert (. templs "layout") "No layout file in template folder")
     (set et._templs templs)
     et))

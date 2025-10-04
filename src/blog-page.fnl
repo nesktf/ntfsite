@@ -1,4 +1,3 @@
-(local inspect (require :inspect))
 (local lmrk (require :lunamark))
 (local {: read-file : list-dir : cat-path : split-ext : filetype} (require :fs))
 
@@ -43,8 +42,14 @@
         luna-writer (lmrk.writer.html.new {})
         luna-parser (lmrk.reader.markdown.new luna-writer
                                               {:link_attributes true})
-        tree []]
-    (print (inspect entries-files))
+        blog-links (icollect [_i entry (ipairs entries-files)]
+                     {:name entry.title
+                      :url (.. "/" (cat-path self.name entry.name))})
+        tree [(et:page-from-templ "blog"
+                                  {:title "nesktf's blogs"
+                                   :dst-path (cat-path paths.output self.name
+                                                       "index.html")}
+                                  {:blog_links blog-links})]]
     (each [_i entry (ipairs entries-files)]
       (table.insert tree
                     {:title entry.title

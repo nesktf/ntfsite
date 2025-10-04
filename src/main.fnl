@@ -1,4 +1,3 @@
-(local inspect (require :inspect))
 (local {: write-file : copy-file : filetype : split-dir-file : make-dir}
        (require :fs))
 
