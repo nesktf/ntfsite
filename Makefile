@@ -3,14 +3,16 @@ TEMPL_DIR 	:= templ
 STATIC_DIR 	:= static
 SRC_DIR 		:= src
 DATA_DIR 		:= data
+LUA_OUTPUT 	:= $(BUILD_DIR)/lua
 
 FNLC		:= fennel -c
 LUAINT	:= luajit
-FNL_SRC := $(wildcard $(SRC_DIR)/*.fnl)
-LUA_SRC := $(patsubst $(SRC_DIR)/%.fnl, $(BUILD_DIR)/%.lua, $(FNL_SRC))
-LUAPATH := ${LUA_PATH};./$(BUILD_DIR)/?.lua
+# FNL_SRC := $(wildcard $(SRC_DIR)/*.fnl)
+FNL_SRC := $(shell find $(SRC_DIR) -type f -iname "*.fnl")
+LUA_SRC := $(patsubst $(SRC_DIR)/%.fnl, $(LUA_OUTPUT)/%.lua, $(FNL_SRC))
+LUAPATH := ${LUA_PATH};./$(LUA_OUTPUT)/?.lua;./$(LUA_OUTPUT)/?/init.lua
 
-SITE_MAKER	:= $(BUILD_DIR)/main.lua
+SITE_MAKER	:= $(LUA_OUTPUT)/main.lua
 OUTPUT_DIR	:= $(BUILD_DIR)/site
 
 .PHONY: site clean lua
@@ -18,9 +20,10 @@ OUTPUT_DIR	:= $(BUILD_DIR)/site
 all: site
 
 $(BUILD_DIR)/:
-	mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(LUA_OUTPUT)/pages
 
-$(BUILD_DIR)/%.lua: $(SRC_DIR)/%.fnl | $(BUILD_DIR)/
+$(LUA_OUTPUT)/%.lua: $(SRC_DIR)/%.fnl | $(BUILD_DIR)/
 	@echo "- Compiling fenel source " $<
 	$(FNLC) $< > $@
 

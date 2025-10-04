@@ -33,7 +33,7 @@
         parsed (parser file-content)]
     (et:inject "blog-page" {:md_content parsed})))
 
-(fn gen-blog-tree [self {: et : paths}]
+(λ gen-blog-tree [self {: et : paths}]
   (let [src-path (cat-path paths.data self.name)
         entries (find-blog-paths src-path)
         entries-files (icollect [_i entry (ipairs entries)]

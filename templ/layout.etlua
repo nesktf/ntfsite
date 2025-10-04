@@ -15,11 +15,11 @@
         <span id="title">nesktf</span>
 
         <div id="navlist">
-          <b><a class="navlink" href="home.html">home</a></b>
-          <a class="navlink" href="about.html">about</a>
-          <a class="navlink" href="projects.html">projects</a>
-          <a class="navlink" href="misc.html">misc</a>
-          <a class="navlink" href="blog.html">blog</a>
+          <b><a class="navlink" href="/">home</a></b>
+          <a class="navlink" href="/about">about</a>
+          <a class="navlink" href="/projects">projects</a>
+          <a class="navlink" href="/blog">blog</a>
+          <a class="navlink" href="/misc">misc</a>
         </div>
       </div>
     </div>
