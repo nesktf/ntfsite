@@ -47,6 +47,15 @@
              (file:close)
              (values nil err)))))
 
+(λ make-dir [path]
+  ;; Dirty hack
+  (os.execute (string.format "mkdir -p \"%s\"" path))
+  path)
+
+(λ split-dir-file [path-with-file]
+  (let [(dir file) (path-with-file:match "^(.+)%/(.+)$")]
+    (values (.. dir "/") file)))
+
 {: read-file
  : write-file
  : list-dir
@@ -54,4 +63,6 @@
  : cat-path
  : split-ext
  : filetype
- : copy-file}
+ : copy-file
+ : make-dir
+ : split-dir-file}

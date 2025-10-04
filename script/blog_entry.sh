@@ -10,8 +10,9 @@ fi
 
 slug=$(printf "%s" "${1// /-}" | tr '[:upper:]' '[:lower:]')
 timestamp=$(date +'%s')
-docname="${timestamp}-${slug}"
+docname="${timestamp}-${slug//\/}"
+md_title="${1//\//\\\\}"
 
 mkdir -p "${ENTRY_DIR}/${docname}"
-echo "# ${1}" > "${ENTRY_DIR}/${docname}/index.md"
-${EDITOR} "${ENTRY_DIR}/${docname}/index.md"
+echo "# ${1}" > "${ENTRY_DIR}/${docname}/${md_title}.md"
+${EDITOR} "${ENTRY_DIR}/${docname}/${md_title}.md"
