@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark">
     <title> <%= title %> </title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css">
   </head>
 
@@ -29,6 +29,9 @@
         <%- content %>
       </main>
 
+      <% if (disable_sidebar) then %>
+        <div>amomoa</div>
+      <% else %>
       <aside class="sidebar">
         <div class="card card-links">
           <h2>Funny things</h2>
@@ -45,10 +48,12 @@
           <p class="img-caption">kyouko</p>
         </div>
       </aside>
+      <% end %>
     </div>
 
     <footer class="footer">
-      <p> Site compiled at <%= comp_date %> </p>
+      <p><a href="https://github.com/nesktf/website">Source Code</a></p>
+      <p> Compiled at <%= comp_date %> </p>
     </footer>
   </body>
 </html>

@@ -23,6 +23,7 @@
   (let [content (et:inject "layout"
                            {:content page.content
                             :comp_date comp-date
+                            :disable_sidebar page.disable-sidebar
                             :title page.title})
         (dir _file) (split-dir-file page.dst-path)]
     (make-dir dir)
@@ -37,7 +38,7 @@
       (handle-copy-file page)))
 
 (let [paths (parse-paths)
-      comp-date (os.date "%Y/%m/%d @ %H:%M (GMT-3)")
+      comp-date (os.date "%Y/%m/%d %H:%M (GMT-3)")
       et-ctx (et-load paths)
       pages (load-pages et-ctx paths)]
   (each [_i page (ipairs pages)]

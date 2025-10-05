@@ -15,6 +15,7 @@
   (let [content (self:inject templ-name ?page-params)]
     {:type filetype.page
      :title layout-params.title
+     :disable-sidebar layout-params.disable-sidebar
      : content
      :dst-path layout-params.dst-path}))
 
