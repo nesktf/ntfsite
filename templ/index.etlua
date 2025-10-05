@@ -1,34 +1,54 @@
-<nav class="navbar">
-</nav>
-
-<main>
-  <div class="card">
-    <h1 class="card-title">Welcome to my website</h1>
-    <div class="card-content">
-      <p>Hello! And welcome to my little place on the internet</p>
-      <p>Here you can find information about my personal projects and some other useless things about me and my interests (mostly related to programming)</p>
-    </div>
+<div class="card">
+  <h1 class="card-title">Welcome to my website</h1>
+  <div class="card-content">
+    <p>Hello! And welcome to my little place on the internet</p>
+    <p>Here you can find information about my personal projects and some other useless things about me and my interests (mostly related to programming)</p>
   </div>
-
-  <div class="card">
-    <h1 class="card-title">Projects</h1>
-    <div class="card-content">
-      <ul>
-      <% for _, proj in ipairs(projects) do %>
-        <li><a href="<%= proj.url %>"><%= proj.name %></a></li>
-      <% end %>
-      </ul>
-    </div>
+  <code>
+    <span>for (const auto [a, b] : things) {</span><br>
+    <span>    std::println("{}, {}", a, b);</span><br>
+    <span>}</span>
+  </code>
+  <div class="aa">
+    <pre> 　　　　　　　 　_____.,.へ.
+　　　 _,.-‐''''"´　／ ＠ ＼_.
+　　,.'"　　r___,.rﾆ'ｰ'´￣｀ヽ!ヽ､
+　　!_,.rソ´　i ____ｲ　 　｀i　,｀'ｰﾄ､_
+　r' i,ｲ /　　ﾊ__/_､ﾊ 　/__ﾊ　 ',7」
+　 Ｙ´ /!/ﾚｲ　　　　 レ'!,ｨ､ !/|ﾊソ
+　 ,'　　,'　　| "￣｀　 　 -､!ﾊ　Y\´
+. / 　 /　i　ﾊ　　　____｀　"i ハ!
+く　　ｲ ./　| |&gt;､ 　｀ ´　　人 ﾊ
+ﾉ＾ｰ'!/,ｲ-ハﾄ､.!｀=ｰｒ＜´!.ﾊヽ!
+＾Y ,イ＾ヽ､ゝ 　＼「７/｀ヽ!Vヽ!
+　ﾚ'ｿ　　　 Lヽ､　 〈ﾊ〉　 〉､　　 /7￣￣￣￣￣￣￣7
+　「｀ｰ'＾ｰ'＾７　｀ヽ/§ヽ!／ヽ　.// ____________________ ./
+.ｲ｀ｰ--‐イ､_,.－r!､.§　〉 ／｀// /　 PC.冥界 　 //
+7ヽr､__r'"´ /　// '"´｀ヽ､　 .//　￣￣￣￣￣￣ /
+i　　　ｲ　 　| 　| |､_ ,､ ! .ﾊ　//　　　　　　　　　　/
+ヽ､　　　　　i 　| ﾄ=='===='i二二二二二二二二i
+    </pre>
   </div>
+</div>
 
-  <div class="card">
-    <h1 class="card-title">Blog entries</h1>
-    <div class="card-content">
-      <ul>
-      <% for _, entry in ipairs(blog_entries) do %>
-        <li><a href="<%= entry.url %>"><%= entry.name %></a></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="card">
+  <h1 class="card-title">Projects</h1>
+  <div class="card-content">
+    <ul>
+    <% for _, proj in ipairs(projects) do %>
+      <li><a href="<%= proj.url %>"><%= proj.name %></a></li>
+    <% end %>
+    </ul>
   </div>
-</main>
+</div>
+
+<div class="card">
+  <h1 class="card-title">Blog entries</h1>
+  <div class="card-content">
+    <ul>
+    <% for _, entry in ipairs(blog_entries) do %>
+      <li><a href="<%= entry.url %>"><%= entry.name %></a></li>
+    <% end %>
+    </ul>
+  </div>
+</div>

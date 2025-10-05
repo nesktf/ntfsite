@@ -6,31 +6,48 @@
     <meta name="color-scheme" content="dark">
     <title> <%= title %> </title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
 
   <body>
-    <div id="header">
-      <div id="nav">
-        <span id="title">nesktf</span>
-
-        <div id="navlist">
-          <b><a class="navlink" href="/">home</a></b>
-          <a class="navlink" href="/about">about</a>
-          <a class="navlink" href="/projects">projects</a>
-          <a class="navlink" href="/blog">blog</a>
-          <a class="navlink" href="/misc">misc</a>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="/">nesktf</a>
         </div>
-      </div>
+        <ul class="navbar-links">
+          <li><a href="/about">About</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/misc">Misc</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="main-layout">
+      <main id="main-content" class="main-content">
+        <%- content %>
+      </main>
+
+      <aside class="sidebar">
+        <div class="card card-links">
+          <h2>Funny things</h2>
+          <ul>
+            <li><a href="#">Test</a></li>
+            <li><a href="#">Test</a></li>
+            <li><a href="#">Test</a></li>
+          </ul>
+        </div>
+
+        <div class="card card-image">
+          <h2>Funny image</h2>
+          <img src="image/kyouko_pc.png" alt="kyouko" />
+          <p class="img-caption">kyouko</p>
+        </div>
+      </aside>
     </div>
 
-    <main>
-      <div id="content">
-        <%- content %>
-      </div>
-    </main>
-
-    <footer>
+    <footer class="footer">
       <p> Site compiled at <%= comp_date %> </p>
     </footer>
   </body>
