@@ -1,3 +1,34 @@
 <nav class="navbar">
-amoma
 </nav>
+
+<main>
+  <div class="card">
+    <h1 class="card-title">Welcome to my website</h1>
+    <div class="card-content">
+      <p>Hello! And welcome to my little place on the internet</p>
+      <p>Here you can find information about my personal projects and some other useless things about me and my interests (mostly related to programming)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h1 class="card-title">Projects</h1>
+    <div class="card-content">
+      <ul>
+      <% for _, proj in ipairs(projects) do %>
+        <li><a href="<%= proj.url %>"><%= proj.name %></a></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h1 class="card-title">Blog entries</h1>
+    <div class="card-content">
+      <ul>
+      <% for _, entry in ipairs(blog_entries) do %>
+        <li><a href="<%= entry.url %>"><%= entry.name %></a></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</main>

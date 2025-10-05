@@ -1,0 +1,10 @@
+<div class="card">
+  <% if card_icon then %>
+    <img class="card-icon" src="<%= card_icon %>"/>
+  <% end %>
+  <h1 class="card-title"><%= card_title %></h1>
+  <br>
+  <div class="card-content">
+    <%= content %>
+  </div>
+</div>

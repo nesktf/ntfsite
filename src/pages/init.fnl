@@ -1,11 +1,13 @@
 (local {: cat-path} (require :fs))
-(local blog-page (require :pages.blog-page))
+(local blog-page (require :pages.blog))
+(local projects-page (require :pages.projects))
 
 (λ gen-index-tree [_self {: et : paths}]
   [(et:page-from-templ "index"
-                       {:title "nesktf's page"
+                       {:title "nesktf's website"
                         :dst-path (cat-path paths.output "index.html")}
-                       {})])
+                       {:projects (projects-page:top-entries)
+                        :blog_entries (blog-page:top-entries paths.data)})])
 
 (local index-page {:name "index" :gen-tree gen-index-tree})
 
@@ -16,14 +18,6 @@
                        {})])
 
 (local about-page {:name "about" :gen-tree gen-about-tree})
-
-(λ gen-projects-tree [_self {: et : paths}]
-  [(et:page-from-templ "projects"
-                       {:title "my projects"
-                        :dst-path (cat-path paths.output "projects/index.html")}
-                       {})])
-
-(local projects-page {:name "projects" :gen-tree gen-projects-tree})
 
 (λ append-page-tree! [main-tree page ctx]
   (let [page-tree (page:gen-tree ctx)]

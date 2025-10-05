@@ -1,16 +1,29 @@
 (local lmrk (require :lunamark))
-(local {: read-file : list-dir : cat-path : split-ext : filetype} (require :fs))
+(local {: truncate-list} (require :util))
+(local {: read-file
+        : list-dir
+        : cat-path
+        : split-ext
+        : filetype
+        : split-dir-file} (require :fs))
 
 (λ find-blog-paths [blog-data-path]
   (let [files (list-dir blog-data-path)]
     (icollect [_i file (ipairs files)]
       {:name file :path (cat-path blog-data-path file)})))
 
+(fn is-md-file? [path]
+  (let [(_name ext) (split-ext path)]
+    (= ext "md")))
+
+(fn entry-md-file [path entry-files]
+  (. (icollect [_i file (ipairs entry-files)]
+       (if (is-md-file? file)
+           (cat-path path file)
+           nil)) 1))
+
 (λ split-blog-files [entry output-dir]
-  (let [is-md-file? (fn [path]
-                      (let [(_name ext) (split-ext path)]
-                        (= ext "md")))
-        files (list-dir entry.path)
+  (let [files (list-dir entry.path)
         md-file (. (icollect [_i file (ipairs files)]
                      (if (is-md-file? file)
                          (cat-path entry.path file)
@@ -46,7 +59,7 @@
                      {:name entry.title
                       :url (.. "/" (cat-path self.name entry.name))})
         tree [(et:page-from-templ "blog"
-                                  {:title "nesktf's blogs"
+                                  {:title "blog entries"
                                    :dst-path (cat-path paths.output self.name
                                                        "index.html")}
                                   {:blog_links blog-links})]]
@@ -63,4 +76,17 @@
                             :dst-path file.dst-path})))
     tree))
 
-{:name "blog" :gen-tree gen-blog-tree}
+(λ top-entries [self data-path ?limit]
+  (let [entry-paths (find-blog-paths (cat-path data-path self.name))
+        entries (icollect [_i entry (ipairs entry-paths)]
+                  (let [md-file (entry-md-file entry.path (list-dir entry.path))
+                        (_dir file) (split-dir-file md-file)
+                        (filename _ext) (split-ext file)
+                        name (filename:gsub "\\\\" "/")
+                        url (string.format "/%s/%s" self.name entry.name)]
+                    {: url : name}))]
+    (if (not= ?limit nil)
+        (truncate-list entries ?limit)
+        entries)))
+
+{:name "blog" :gen-tree gen-blog-tree : top-entries}

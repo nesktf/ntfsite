@@ -1,11 +1,15 @@
 (local etlua (require :etlua))
 (local {: list-dir : split-ext : read-file : cat-path : filetype} (require :fs))
+(local {: merge-tbls} (require :util))
 
 (λ inject [self templ-name ?params]
   (assert (. self._templs templ-name)
           (string.format "No template named \"%s\" found" templ-name))
-  (let [templ (. self._templs templ-name)]
-    (templ ?params)))
+  (let [base-args {:inject_from (λ [templ ?args]
+                                  (self:inject templ ?args))}
+        templ-args (merge-tbls base-args (or ?params {}))
+        templ (. self._templs templ-name)]
+    (templ templ-args)))
 
 (λ page-from-templ [self templ-name layout-params ?page-params]
   (let [content (self:inject templ-name ?page-params)]
