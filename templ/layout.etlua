@@ -30,7 +30,6 @@
       </main>
 
       <% if (disable_sidebar) then %>
-        <div>amomoa</div>
       <% else %>
       <aside class="sidebar">
         <div class="card card-links">
