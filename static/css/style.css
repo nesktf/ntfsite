@@ -1,61 +1,15 @@
-@font-face {
-  font-family: 'pxplus_ibm_vga8regular';
-  src: url('PxPlus_IBM_VGA8.woff') format('woff');
-  src: url('PxPlus_IBM_VGA8.ttf') format('truetype');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'pc98';
-  src: 
-    url('PC_9800.woff2') format('woff2'),
-    url('PC_9800.woff') format('woff'),
-    url('pc-9800.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Textar";
-  font-style: normal;
-  font-weight: normal;
-  src:
-    url("textar-light.woff2") format("woff2"),
-    url("textar-light.woff") format("woff"),
-    url("textar-light.ttf") format("ttf");
-}
+@import "faces.css";
 
 body {
   color: #C8C9DF;
   background-color: #232539;
   margin: 0;
   padding: 0;
-  background-image: url('../image/grid.png');
+  background-image: url('/css/grid.png');
   
-  line-height: 1.3;
-  font-family: "pxplus_ibm_vga8regular";
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-pre, .kana, .blog > h1,h2,h3,h4,h5, small {
-  font-family: 'pc98';
-  text-align: start;
-}
-
-h1, h2, h3, h4, h5 {
-	line-height: 1;
-}
-
-code {
-	font-family: 'pxplus_ibm_vga8regular';
-}
-
-b {
-  font-weight: normal !important;
-  text-shadow: 2px 2px #555; 
 }
 
 .navbar {
@@ -67,7 +21,7 @@ b {
   box-sizing: border-box;
 
   background-color: #232539;
-  padding: 5px 20px;
+  padding: 6px 20px;
   z-index: 1000;
 
   border-bottom: 1px dashed #c8c9df;
@@ -101,7 +55,7 @@ b {
 .navbar-links a {
   color: white;
   text-decoration: none;
-  padding: 8px 12px;
+  padding: 4px 12px;
   display: block;
   transition: background-color 0.3s;
 }
@@ -190,20 +144,6 @@ b {
 
 .footer p {
   margin: 0;
-}
-
-.aa pre, textarea {
-  font-size: 1em;
-  line-height: 1.1;
-  font-family: 'ＭＳ Ｐゴシック','MS PGothic','梅Pゴシック',Textar,sans-serif;
-  white-space: pre;
-  word-wrap: normal;
-}
-
-.aa span {
-  font-size: 1em;
-  font-family: monospace;
-  white-space: pre;
 }
 
 @media screen and (max-width: 768px) {

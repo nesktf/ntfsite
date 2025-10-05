@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark">
     <title> <%= title %> </title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
   </head>
 
   <body>
@@ -41,7 +41,7 @@
 
         <div class="card card-image">
           <h2>Funny image</h2>
-          <img src="image/kyouko_pc.png" alt="kyouko" />
+          <img src="/image/kyouko_pc.png" alt="kyouko" />
           <p class="img-caption">kyouko</p>
         </div>
       </aside>

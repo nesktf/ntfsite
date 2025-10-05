@@ -1,6 +1,6 @@
-<div>
-<p>this is the blog main page</p>
-<p>these are the entries</p>
+<div class="card">
+  <p>this is the blog main page</p>
+  <p>these are the entries</p>
   <ul>
   <% for _, page in ipairs(blog_links) do %>
     <li><a href="<%= page.url %>"><%= page.name %></a></li>
