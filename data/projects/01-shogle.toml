@@ -10,9 +10,7 @@ I first intended for it to be a complete game engine, but i quickly realized tha
 Some other projects of mine that use this library are
 
 - [Kappa Engine](#kappa_engine)
-
 - [Danmaku Engine](#danmaku_engine)
-
 - [LoRa GPS tracker](#lora_gps_tracking)
 """
 lang = ["cpp"]

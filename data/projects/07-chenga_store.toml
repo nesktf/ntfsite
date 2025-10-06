@@ -6,5 +6,5 @@ Very crappy manga ecommerce system that i made for a college project.
 It uses the Lapis web framework, some HTMX forms, PicoCSS for the styles and Mustache for client side rendering.
 """
 lang = ["lua", "js"]
-license = "unlicense"
+license = "Unlicense"
 repo = "https://github.com/nesktf/chenga_store"

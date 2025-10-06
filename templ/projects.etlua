@@ -1,26 +1,44 @@
 <% for _, proj in ipairs(projects) do %>
   <div id="<%= proj.id %>" class="card proj-entry">
-    <h2><%= proj.name %></h2>
+    <% if (proj.repo) then %>
+      <div class="proj-title-cont">
+        <h2><%= proj.name %></h2>
+        <a href="<%= proj.repo %>">
+          <div class="tag-button">
+            <p class="tag-name">Source</p>
+          </div>
+        </a>
+      </div>
+    <% else %>
+      <h2><%= proj.name %></h2>
+    <% end %>
+
     <% if (proj.image) then %>
-    <img src="<%= proj.image %>" />
+      <img src="<%= proj.image %>" />
     <% end %>
     <div class="proj-desc">
       <%- proj.desc %>
     </div>
-    <p><a href="<%= proj.repo %>">Repo</a></p>
-    <% if (proj.lang) then %>
-    <p>Languages:</p>
-    <ul>
-      <% for _, lang in ipairs(proj.lang) do %>
-      <li>
-        <p><%= lang %></p>
-        <img src="/image/svg/<%= lang %>.svg" width=50 height=50/>
-      </li>
+
+    <div class="tag-container">
+      <div class="tag-list">
+        <% if (proj.license) then %>
+          <div class="tag-button">
+            <p class="tag-name"><%= proj.license %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <% if (proj.lang and (#proj.lang > 0)) then %>
+          <div class="tag-list">
+          <% for _, lang in ipairs(proj.lang) do %>
+            <div class="tag-button">
+              <img class="tag-icon" src="/image/svg/<%= lang %>.svg" />
+              <p class="tag-name"><%= lang %></p>
+            </div>
+          <% end %>
+          </div>
       <% end %>
-    </ul>
-    <% end %>
-    <% if (proj.license) then %>
-    <p> License: <%= proj.license %></p>
-    <% end %>
+    </div>
   </div>
 <% end %>

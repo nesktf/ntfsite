@@ -6,5 +6,4 @@ A simple tool that i made to use my joycons in my pc without pairing using bluet
 It's just a simple socket connection that forwards inputs from the switch and sends them to a linux machine with some udev rules.
 """
 lang = ["c", "cpp"]
-license = "Not defined"
 repo = "https://github.com/nesktf/nxlinjoy"

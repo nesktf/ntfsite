@@ -8,5 +8,5 @@ I used some concepts from the Lapis web framework, and kind of tried to fit them
 I felt like making my own static website generator would be a fun excercise :p.
 """
 lang = ["fennel"]
-license = "unlicense"
+license = "Unlicense"
 repo = "https://github.com/nesktf/website"

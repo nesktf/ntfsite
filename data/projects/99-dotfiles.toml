@@ -8,5 +8,5 @@ Nothing much to say here, just some configurations for my AwesomeWM environment.
 I use Arch and Debian btw.
 """
 lang = ["fennel", "lua", "bash"]
-license = "unlicense"
+license = "Unlicense"
 repo = "https://github.com/nesktf/dotfiles"
