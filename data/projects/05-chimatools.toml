@@ -1,0 +1,10 @@
+[PROJECT]
+name = "chimatools"
+desc = """
+Fun little project that i made for generating and parsing game assets, mainly spritesheets.
+
+It has some LuaJIT bindings, so it's a nice tool to have when i'm making scripts to manipulate sprites.
+"""
+lang = ["c", "fennel"]
+license = "MIT"
+repo = "https://github.com/nesktf/chimatools"

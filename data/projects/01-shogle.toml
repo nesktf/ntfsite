@@ -1,0 +1,20 @@
+[PROJECT]
+name = "ShOGLE"
+desc = """
+My personal rendering library. I use it whenever i need to render something in 2D or 3D.
+
+It supports creating an OpenGL context using GLFW. There are some things laid down to support other backends like Vulkan or a software renderer on the future.
+
+I first intended for it to be a complete game engine, but i quickly realized that i needed to reduce its scope to something more manageable.
+
+Some other projects of mine that use this library are
+
+- [Kappa Engine](#kappa_engine)
+
+- [Danmaku Engine](#danmaku_engine)
+
+- [LoRa GPS tracker](#lora_gps_tracking)
+"""
+lang = ["cpp"]
+license = "LGPLv2.1"
+repo = "https://github.com/nesktf/shogle"

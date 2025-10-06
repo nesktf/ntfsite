@@ -1,0 +1,12 @@
+[PROJECT]
+name = "ntfstl"
+desc = """
+Common C++20 standard library that i use in my projects.
+
+It contains some nice classes and common data structures that are missing from the C++20 standard library, or that i found nice to have.
+
+It's used in almost all of my C++ projects.
+"""
+lang = ["cpp"]
+license = "MIT"
+repo = "https://github.com/nesktf/ntfstl"

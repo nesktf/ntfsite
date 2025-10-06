@@ -1,0 +1,12 @@
+[PROJECT]
+name = "Kappa Engine"
+desc = """
+WIP 3D game engine, using [ShOGLE](#shogle) as the rendering backend.
+
+I use it as a playground for testing fun systems, mostly related to physics and animations. 
+
+I don't intend for it to be a serious project for making games, at least for now.
+"""
+lang = ["cpp", "lua"]
+license = "Not defined"
+repo = "https://github.com/nesktf/kappa_engine"

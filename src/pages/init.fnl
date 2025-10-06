@@ -7,8 +7,8 @@
   [(et:page-from-templ "index"
                        {:title "nesktf's website"
                         :dst-path (cat-path paths.output "index.html")}
-                       {:projects (projects-page:top-entries)
-                        :blog_entries (blog-page:top-entries paths.data)})])
+                       {:projects (projects-page:top-entries paths)
+                        :blog_entries (blog-page:top-entries paths)})])
 
 (local index-page {:name "index" :gen-tree gen-index-tree})
 

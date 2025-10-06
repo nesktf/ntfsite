@@ -1,0 +1,12 @@
+[PROJECT]
+name = "Lora GPS tracker"
+desc = """
+A fun college project that i work on from time to time.
+
+It uses two LoRa transcievers and a GPS sensor to track the position for an electric car, and then shows it on the recieving end in a map that i render using [ShOGLE](#shogle) and OpenStreetMap tiles.
+
+I intend for this project to become my college thesis in the future.
+"""
+lang = ["cpp", "arduino"]
+license = "unlicense"
+repo = "https://github.com/nesktf/lora_gps_tracking"

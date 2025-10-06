@@ -34,19 +34,6 @@
 (λ split-ext [filename]
   (filename:match "^(.+)%.(.+)$"))
 
-(λ copy-file [from to]
-  (case-try (io.open from "rb")
-    from-file (values (io.open to "w") from-file)
-    (to-file from-file) (let [content (from-file:read "*all")]
-                          (to-file:write content)
-                          (to-file:close)
-                          (from-file:close)
-                          content)
-    (catch (nil err) (values nil err) (nil err file)
-           (do
-             (file:close)
-             (values nil err)))))
-
 (λ make-dir [path]
   ;; Dirty hack
   (os.execute (string.format "mkdir -p \"%s\"" path))
@@ -55,6 +42,12 @@
 (λ split-dir-file [path-with-file]
   (let [(dir file) (path-with-file:match "^(.+)%/(.+)$")]
     (values (.. dir "/") file)))
+
+(λ copy-file [from to]
+  ;; Dirty hack again
+  (let [(dir _name) (split-dir-file to)]
+    (make-dir dir)
+    (os.execute (string.format "cp \"%s\" \"%s\"" from to))))
 
 {: read-file
  : write-file

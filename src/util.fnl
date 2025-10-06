@@ -1,8 +1,12 @@
 (fn truncate-list [list n]
-  (let [out []]
-    (for [i 1 n]
-      (table.insert out (. list i)))
-    out))
+  (let [len (length list)
+        out []]
+    (if (>= n len)
+        list
+        (do
+          (for [i 1 n]
+            (table.insert out (. list i)))
+          out))))
 
 (fn merge-tbls [...]
   (let [out {}

@@ -76,8 +76,8 @@
                             :dst-path file.dst-path})))
     tree))
 
-(λ top-entries [self data-path ?limit]
-  (let [entry-paths (find-blog-paths (cat-path data-path self.name))
+(λ top-entries [self paths ?limit]
+  (let [entry-paths (find-blog-paths (cat-path paths.data self.name))
         entries (icollect [_i entry (ipairs entry-paths)]
                   (let [md-file (entry-md-file entry.path (list-dir entry.path))
                         (_dir file) (split-dir-file md-file)

@@ -36,7 +36,7 @@ i　　　ｲ　 　| 　| |､_ ,､ ! .ﾊ　//　　　　　　　　　　/
   <div class="card-content">
     <ul>
     <% for _, proj in ipairs(projects) do %>
-      <li><a href="<%= proj.url %>"><%= proj.name %></a></li>
+      <li><a href="/projects#<%= proj.id %>"><%= proj.name %></a></li>
     <% end %>
     </ul>
   </div>

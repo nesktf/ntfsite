@@ -1,0 +1,12 @@
+[PROJECT]
+name = "Danmaku Engine"
+desc = """
+WIP bullet hell engine, using [ShOGLE](#shogle) as the rendering backend.
+
+It's my own take on an engine like danmakufu, using Lua coroutines as the main building block.
+
+I haven't touched this one in a while, but i want to go back to it someday.
+"""
+lang = ["cpp"]
+license = "Not defined"
+repo = "https://github.com/nesktf/danmaku_engine"

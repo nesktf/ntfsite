@@ -1,0 +1,23 @@
+<% for _, proj in ipairs(projects) do %>
+  <div id="<%= proj.id %>" class="card proj-entry">
+    <h2><%= proj.name %></h2>
+    <% if (proj.image) then %>
+    <img src="<%= proj.image %>" />
+    <% end %>
+    <div class="proj-desc">
+      <%- proj.desc %>
+    </div>
+    <p><a href="<%= proj.repo %>">Repo</a></p>
+    <% if (proj.lang) then %>
+    <p>Languages:</p>
+    <ul>
+      <% for _, lang in ipairs(proj.lang) do %>
+      <li><%= lang %></li>
+      <% end %>
+    </ul>
+    <% end %>
+    <% if (proj.license) then %>
+    <p> License: <%= proj.license %></p>
+    <% end %>
+  </div>
+<% end %>
