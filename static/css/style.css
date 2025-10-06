@@ -1,73 +1,27 @@
 @import "faces.css";
+@import "proj.css";
+@import "nav.css";
+
+html {
+  overflow-x: hidden;
+}
 
 body {
-  color: #C8C9DF;
-  background-color: #232539;
+  color: var(--text-3);
+  background-color: var(--bg-1);
   margin: 0;
   padding: 0;
   background-image: url('/css/grid.png');
+  box-sizing: border-box;
   
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  box-sizing: border-box;
-
-  background-color: #232539;
-  padding: 6px 20px;
-  z-index: 1000;
-
-  border-bottom: 1px dashed #c8c9df;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-logo {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.navbar-logo a {
-  color: white;
-  text-decoration: none;
-}
-
-.navbar-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.navbar-links li {
-  margin-left: 20px;
-}
-
-.navbar-links a {
-  color: white;
-  text-decoration: none;
-  padding: 4px 12px;
-  display: block;
-  transition: background-color 0.3s;
-}
-
-.navbar-links a:hover {
-  background-color: #575757;
-  border-radius: 4px;
-}
-
 .main-layout {
   display: flex;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -95,8 +49,8 @@ body {
 }
 
 .card {
-  background-color: #232539;
-  border: 1px solid #DDD;
+  background-color: var(--bg-1);
+  border: 1px solid var(--border-2);
   border-radius: 4px;
   padding: 15px;
   margin-botton: 20px;
@@ -104,15 +58,15 @@ body {
 
 .card h2 {
   font-size: 1.2em;
-  border-bottom: 2px solid #CCC;
+  border-bottom: 2px solid var(--border-3);
   padding-bottom: 5px;
   margin-bottom: 10px;
-  color: #FFFFFF;
+  color: var(--text-1);
 }
 
 .card a {
   text-decoration: none;
-  color: #007BFF;
+  color: var(--link-1);
 }
 
 .card-links ul {
@@ -122,7 +76,7 @@ body {
 
 .card-links a {
   text-decoration: none;
-  color: #007BFF;
+  color: var(--link-1);
   display: block;
   padding: 5px 0;
 }
@@ -139,135 +93,17 @@ body {
   text-align: center;
 }
 
-.footer {
-  width: 100%;
-  background-color: #111;
-  color: #f1f1f1;
-  text-align: center;
-  padding: 2px 20px;
-
-  box-sizing: border-box;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer p {
-  margin: 0;
-}
-
-.footer a {
-  text-decoration: none;
-  color: #007BFF;
-  display: block;
-  padding: 5px 0;
-}
-
-.aa pre {
-  background-color: #131529;
-  border: 1px dashed #c8c9df;
-  border-radius: 4px;
-}
-
-.tag-button {
-  display: flex;
-  align-items: center;
-
-  background-color: #131529;
-  color: white;
-  border: 1px dashed #c8c9df;
-  padding: 0px 8px;
-
-  border-radius: 4px;
-  line-height: 1;
-}
-
-.tag-icon {
-  display: flex;
-  margin-right: 8px;
-  width: 16px;
-  height: 16px;
-  color: white;
-}
-
-.tag-name {
-  line-height: 0.4;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.tag-list {
-  display: flex;
-  gap: 10px;
-}
-
-.tag-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-}
-
-.proj-desc {
-  padding: 0 8px;
-  padding-bottom: 8px;
-}
-
-.proj-title-cont {
-  display: flex;
-  width: 100%;
-}
-
-.proj-title-cont h2 {
-  flex-grow: 1;
-}
-
-.proj-title-cont a {
-  white-space: nowrap;
-  padding: 10px;
-}
-
 @media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 5px;
-  }
-  .navbar-logo {
-    padding-left: 20px;
-    margin-botton: 20px;
-  }
-  .navbar-links: {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
-  .navbar-links li {
-    margin-left: 0;
-    width: 100%;
-    text-align: left;
-  }
-  .navbar-links a {
-    padding: 10px 20px;
-  }
-
   .main-layout {
     flex-direction: column;
   }
   .sidebar {
-    width: 100%;
+    width: 94%;
     order: 2;
-    border-top: 1px solid #CCC;
+    border-top: 1px solid var(--border-3);
   }
   .main-content {
-    width: 100%;
+    width: 94%;
     order: 1;
-  }
-  .footer {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 5px;
   }
 }

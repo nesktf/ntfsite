@@ -1,3 +1,5 @@
+@import "vars.css";
+
 @font-face {
   font-family: 'pxplus_ibm_vga8regular';
   src:
@@ -46,7 +48,7 @@ code {
 
 b {
   font-weight: normal !important;
-  text-shadow: 2px 2px #555; 
+  text-shadow: 2px 2px var(--text-2);
 }
 
 .aa pre, textarea {
@@ -61,4 +63,10 @@ b {
   font-size: 1em;
   font-family: monospace;
   white-space: pre;
+}
+
+.aa pre {
+  background-color: var(--bg-2);
+  border: 1px dashed var(--border-1);
+  border-radius: 4px;
 }
