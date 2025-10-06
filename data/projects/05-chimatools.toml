@@ -8,3 +8,4 @@ It has some LuaJIT bindings, so it's a nice tool to have when i'm making scripts
 lang = ["c", "fennel"]
 license = "MIT"
 repo = "https://github.com/nesktf/chimatools"
+image_desc = "tenkyuu~"

@@ -14,7 +14,14 @@
     <% end %>
 
     <% if (proj.image) then %>
-      <img src="<%= proj.image %>" />
+      <div class="proj-logo-cont" style:>
+        <div>
+          <img class="proj-logo" src="<%= proj.image %>" />
+          <% if (proj.image_desc) then %>
+            <p style="text-align: center"><i><%= proj.image_desc %></i></p>
+          <% end %>
+        </div>
+      </div>
     <% end %>
     <div class="proj-desc">
       <%- proj.desc %>

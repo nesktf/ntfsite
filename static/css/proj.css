@@ -56,3 +56,14 @@
   white-space: nowrap;
   padding: 10px;
 }
+
+.proj-logo-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.proj-logo {
+  max-width: 400px;
+  height: auto;
+}

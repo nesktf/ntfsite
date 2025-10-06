@@ -50,7 +50,7 @@
     (each [i proj-file (ipairs proj-files)]
       (let [toml-content (read-file proj-file.path)
             (id _) (split-ext (proj-file.name:sub 4 -1))
-            {: name : desc : lang : license : repo} (parse-proj-toml toml-content)]
+            {: name : desc : lang : license : repo : image_desc} (parse-proj-toml toml-content)]
         (assert name (string.format "No name in project \"%s\"" proj-file.name))
         (assert desc (string.format "No desc in project \"%s\"" proj-file.name))
         (set (. out i) {: id
@@ -59,6 +59,7 @@
                         : lang
                         : license
                         : repo
+                        : image_desc
                         :image proj-file.image})))
     out))
 

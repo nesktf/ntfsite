@@ -10,3 +10,4 @@ I felt like making my own static website generator would be a fun excercise :p.
 lang = ["fennel"]
 license = "Unlicense"
 repo = "https://github.com/nesktf/website"
+image_desc = "Approved by kyouko"
