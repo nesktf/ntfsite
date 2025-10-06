@@ -1,5 +1,5 @@
 (local etlua (require :etlua))
-(local {: list-dir : split-ext : read-file : cat-path : filetype} (require :fs))
+(local {: list-dir : split-ext : read-file : cat/ : filetype} (require :fs))
 (local {: merge-tbls} (require :util))
 
 (λ inject [self templ-name ?params]
@@ -30,7 +30,7 @@
       (let [(name ext) (split-ext filename)]
         (when (= ext "etlua")
           (print (string.format "- Compiling template \"%s\"..." name))
-          (case (etlua.compile (read-file (cat-path templ-dir filename)))
+          (case (etlua.compile (read-file (cat/ templ-dir filename)))
             compiled (set (. templs name) compiled)
             (nil err) (error err)))))
     (assert (. templs "layout") "No layout file in template folder")

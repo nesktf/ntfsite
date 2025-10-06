@@ -27,7 +27,7 @@
            true)
     (nil _err) false))
 
-(fn cat-path [...]
+(fn cat/ [...]
   (let [dirs [...]]
     (table.concat dirs "/")))
 
@@ -49,13 +49,18 @@
     (make-dir dir)
     (os.execute (string.format "cp \"%s\" \"%s\"" from to))))
 
+(λ is-dir? [path]
+  (let [attr (lfs.attributes path)]
+    (= attr.mode "directory")))
+
 {: read-file
  : write-file
  : list-dir
  : file-exists?
- : cat-path
+ : cat/
  : split-ext
  : filetype
  : copy-file
  : make-dir
- : split-dir-file}
+ : split-dir-file
+ : is-dir?}

@@ -1,7 +1,7 @@
 [PROJECT]
 name = "ShOGLE"
 desc = """
-My personal rendering library. I use it whenever i need to render something in 2D or 3D.
+My personal rendering library, the name stands for "Shrimple OpenGL Engine". I use it whenever i need to render something in 2D or 3D.
 
 It supports creating an OpenGL context using GLFW. There are some things laid down to support other backends like Vulkan or a software renderer on the future.
 

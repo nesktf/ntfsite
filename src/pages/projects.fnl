@@ -1,7 +1,7 @@
 (local inspect (require :inspect))
 (local lmrk (require :lunamark))
 (local toml (require :toml))
-(local {: cat-path : list-dir : split-ext : read-file : filetype} (require :fs))
+(local {: cat/ : list-dir : split-ext : read-file : filetype} (require :fs))
 (local {: truncate-list} (require :util))
 
 (λ is-toml-file? [path]
@@ -18,7 +18,7 @@
 (λ find-project-paths [project-data-path]
   (let [add-data-path (fn [file]
                         (if file
-                            (cat-path project-data-path file)
+                            (cat/ project-data-path file)
                             nil))
         files (list-dir project-data-path)
         other-files (icollect [_i file (ipairs files)]
@@ -63,14 +63,14 @@
     out))
 
 (λ top-entries [self paths ?limit]
-  (let [proj-files (find-project-paths (cat-path paths.data self.name))
+  (let [proj-files (find-project-paths (cat/ paths.data self.name))
         entries (parse-project-meta proj-files)]
     (if (not= ?limit nil)
         (truncate-list entries ?limit)
         entries)))
 
 (λ gen-project-tree [self {: et : paths}]
-  (let [proj-files (find-project-paths (cat-path paths.data self.name))
+  (let [proj-files (find-project-paths (cat/ paths.data self.name))
         proj-meta (parse-project-meta proj-files)
         luna-writer (lmrk.writer.html.new {})
         luna-parser (lmrk.reader.markdown.new luna-writer
@@ -79,7 +79,7 @@
     (each [_i proj (ipairs proj-meta)]
       (when proj.image
         (let [(_name ext) (split-ext proj.image)
-              new-path (cat-path paths.output self.name (.. proj.id "." ext))]
+              new-path (cat/ paths.output self.name (.. proj.id "." ext))]
           (table.insert tree {:type filetype.file
                               :src-path proj.image
                               :dst-path new-path})
@@ -87,9 +87,9 @@
       (set proj.desc (luna-parser proj.desc)))
     (table.insert tree
                   (et:page-from-templ "projects"
-                                      {:title "my projects"
-                                       :dst-path (cat-path paths.output
-                                                           "projects/index.html")}
+                                      {:title "My Projects"
+                                       :dst-path (cat/ paths.output
+                                                       "projects/index.html")}
                                       {:projects proj-meta}))
     tree))
 

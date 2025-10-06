@@ -1,10 +1,10 @@
-(local {: cat-path} (require :fs))
+(local {: cat/} (require :fs))
 
 (λ gen-404-tree [_self {: et : paths}]
   (let [pages [(et:page-from-templ "404"
-                                   {:title "page not found"
+                                   {:title "Page Not Found :("
                                     :disable-sidebar true
-                                    :dst-path (cat-path paths.output "404.html")}
+                                    :dst-path (cat/ paths.output "404.html")}
                                    {})]]
     pages))
 
