@@ -110,6 +110,11 @@ body {
   color: #FFFFFF;
 }
 
+.card a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
 .card-links ul {
   list-style: none;
   padding: 0;
@@ -157,6 +162,12 @@ body {
   color: #007BFF;
   display: block;
   padding: 5px 0;
+}
+
+.aa pre {
+  background-color: #131529;
+  border: 1px dashed #c8c9df;
+  border-radius: 4px;
 }
 
 @media screen and (max-width: 768px) {

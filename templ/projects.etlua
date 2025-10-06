@@ -12,7 +12,10 @@
     <p>Languages:</p>
     <ul>
       <% for _, lang in ipairs(proj.lang) do %>
-      <li><%= lang %></li>
+      <li>
+        <p><%= lang %></p>
+        <img src="/image/svg/<%= lang %>.svg" width=50 height=50/>
+      </li>
       <% end %>
     </ul>
     <% end %>

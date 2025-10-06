@@ -18,3 +18,10 @@ Here i have a funny list of things
 
 ## This is a latex entry
 $$ F(t) = \int_{0}^{\infty} f(t)e^{-i \pi wt} dt$$
+
+## This is a code block
+```cpp
+for (const auto& [name, thing] : things) {
+    std::cout << name << ", " << thing.value() << "\n";
+}
+```
