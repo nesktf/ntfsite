@@ -7,6 +7,6 @@ Nothing much to say here, just some configurations for my AwesomeWM environment.
 
 I use Arch and Debian btw.
 """
-lang = ["fennel", "lua", "bash"]
+lang = ["fennel", "bash", "loonix", "nvim", "emacs"]
 license = "Unlicense"
 repo = "https://github.com/nesktf/dotfiles"

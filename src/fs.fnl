@@ -49,6 +49,10 @@
     (make-dir dir)
     (os.execute (string.format "cp \"%s\" \"%s\"" from to))))
 
+(λ delete-file [path]
+  ;; I love dirty hacks
+  (os.execute (string.format "rm -rf \"%s\"" path)))
+
 (λ is-dir? [path]
   (let [attr (lfs.attributes path)]
     (= attr.mode "directory")))
@@ -63,4 +67,5 @@
  : copy-file
  : make-dir
  : split-dir-file
+ : delete-file
  : is-dir?}

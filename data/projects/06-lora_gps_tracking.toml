@@ -7,6 +7,6 @@ It uses two LoRa transcievers and a GPS sensor to track the position for an elec
 
 I intend for this project to become my college thesis in the future.
 """
-lang = ["cpp", "arduino"]
+lang = ["cpp", "opengl", "vulkan", "arduino"]
 license = "Unlicense"
 repo = "https://github.com/nesktf/lora_gps_tracking"

@@ -16,4 +16,7 @@
         (tset out k v)))
     out))
 
-{: truncate-list : merge-tbls}
+(λ epoch-to-str [epoch]
+  (os.date "%Y/%m/%d %H:%M (GMT-3)" (tonumber epoch)))
+
+{: truncate-list : merge-tbls : epoch-to-str}

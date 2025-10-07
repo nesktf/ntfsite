@@ -1,14 +1,19 @@
 (local {: find-md-entries : compile-md-entries} (require :markdown))
-(local {: truncate-list} (require :util))
+(local {: truncate-list : epoch-to-str} (require :util))
 (local {: cat/ : filetype} (require :fs))
 
 (λ ext-blog-links [entries]
   (icollect [_i entry (ipairs entries)]
-    {:name entry.name :url (cat/ "/blog" entry.id)}))
+    {:name entry.name :url (cat/ "/blog" entry.id) :date entry.date}))
 
 (λ content-post-process [blog-path {:content entry-content :id entry-id}]
   (let [entry-path (cat/ blog-path entry-id)]
     (entry-content:gsub "%%%%DIR%%%%" (.. "/" entry-path))))
+
+(λ inject-blog-entry [et blog-path entry]
+  (let [md_content (content-post-process blog-path entry)
+        pub_date (epoch-to-str entry.date)]
+    (et:inject "markdown-entry" {: md_content : pub_date})))
 
 (λ gen-blog-tree [self {: et : paths}]
   (let [output-dir (cat/ paths.output self.name)
@@ -24,9 +29,7 @@
       (table.insert tree
                     {:title entry.name
                      :type filetype.page
-                     :content (et:inject "blog-page"
-                                         {:md_content (content-post-process self.name
-                                                                            entry)})
+                     :content (inject-blog-entry et self.name entry)
                      :dst-path (cat/ output-dir entry.id "index.html")})
       (each [_j file (ipairs entry.files)]
         (table.insert tree
@@ -38,6 +41,11 @@
 (λ top-entries [self paths ?limit]
   (let [data-root (cat/ paths.data self.name)
         entries (ext-blog-links (find-md-entries data-root))]
+    ;; From newest to oldest
+    (table.sort entries (fn [entry-a entry-b]
+                          (let [date-a (tonumber entry-a.date)
+                                date-b (tonumber entry-b.date)]
+                            (> date-a date-b))))
     (if (not= ?limit nil)
         (truncate-list entries ?limit)
         entries)))

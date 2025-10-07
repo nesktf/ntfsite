@@ -7,5 +7,5 @@ I use it as a playground for testing fun systems, mostly related to physics and 
 
 I don't intend for it to be a serious project for making games, at least for now.
 """
-lang = ["cpp"]
+lang = ["cpp", "opengl", "vulkan"]
 repo = "https://github.com/nesktf/kappa_engine"

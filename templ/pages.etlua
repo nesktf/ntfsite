@@ -1,0 +1,6 @@
+<div class="card">
+  <h2 class="card-title">Other pages</h2>
+  <div class="card-content" style="display: flex; align-items: center; gap: 20px;">
+    <p>thing</p>
+  </div>
+</div>

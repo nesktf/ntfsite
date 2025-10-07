@@ -1,6 +1,36 @@
 (local lmrk (require :lunamark))
-(local {: read-file : list-dir : split-ext : is-dir? : cat/ : split-dir-file}
-       (require :fs))
+(local {: write-file
+        : make-dir
+        : read-file
+        : list-dir
+        : split-ext
+        : is-dir?
+        : cat/
+        : file-exists?
+        : delete-file
+        : split-dir-file} (require :fs))
+
+(local eq-templ "
+\\documentclass[border=5pt]{standalone}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\begin{document}
+$$%s$$
+\\end{document}")
+
+(fn compile-tex [paths equation]
+  (local temp-tex-dir (cat/ paths.output "tex_temp"))
+  (local temp-tex (cat/ temp-tex-dir "eq.tex"))
+  (make-dir temp-tex-dir)
+  (write-file temp-tex (string.format eq-templ equation))
+  (os.execute (string.format "pdflatex -interaction=batchmode -output-directory=\"%s\" \"%s\""
+                             temp-tex-dir temp-tex))
+  (assert (file-exists? (cat/ temp-tex-dir "eq.pdf"))
+          "Failed to compile tex equation")
+  (os.execute (string.format "convert -density 300 \"%s/eq.pdf\" \"%s/eq.png\""))
+  (let [image (read-file (cat/ temp-tex-dir "eq.png"))]
+    (delete-file temp-tex-dir)
+    {: equation : image}))
 
 (λ is-md-file? [path]
   (let [(_name ext) (split-ext path)]
@@ -45,4 +75,4 @@
           md-content (read-file md-file.src)]
       {: name : id : date :files cpy-files :content (luna-parser md-content)})))
 
-{: find-md-entries : compile-md-entries}
+{: find-md-entries : compile-md-entries : compile-tex}

@@ -7,5 +7,5 @@ It's my own take on an engine like danmakufu, using Lua coroutines as the main b
 
 I haven't touched this one in a while, but i want to go back to it someday.
 """
-lang = ["cpp", "lua"]
+lang = ["cpp", "opengl", "vulkan"]
 repo = "https://github.com/nesktf/danmaku_engine"

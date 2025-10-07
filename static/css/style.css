@@ -46,6 +46,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 500px;
 }
 
 .card {
@@ -91,6 +92,29 @@ body {
 
 .card-image p {
   text-align: center;
+}
+
+.entry-button-cont {
+  display: flex;
+  max-width: 1400px;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
+.entry-button {
+  border: 1px solid (--border-2);
+  background-color: var(--bg-2);
+  border-radius: 4px;
+  padding: 0px 8px;
+  color: var(--text-1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.entry-button:hover {
+  background-color: var(--bg-4);
 }
 
 @media screen and (max-width: 768px) {

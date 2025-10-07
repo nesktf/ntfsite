@@ -1,3 +1,4 @@
 <div id="md-content" class="card">
+  <p>Published at: <%= pub_date %></p>
   <%- md_content %>
 </div>

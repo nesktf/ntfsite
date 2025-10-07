@@ -13,6 +13,6 @@ Some other projects of mine that use this library are
 - [Danmaku Engine](#danmaku_engine)
 - [LoRa GPS tracker](#lora_gps_tracking)
 """
-lang = ["cpp"]
+lang = ["cpp", "opengl", "vulkan"]
 license = "LGPLv2.1"
 repo = "https://github.com/nesktf/shogle"
