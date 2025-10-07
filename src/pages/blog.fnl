@@ -3,6 +3,11 @@
 (local {: cat/ : filetype} (require :fs))
 
 (λ ext-blog-links [entries]
+  ;; From newest to oldest
+  (table.sort entries (fn [entry-a entry-b]
+                        (let [date-a (tonumber entry-a.date)
+                              date-b (tonumber entry-b.date)]
+                          (> date-a date-b))))
   (icollect [_i entry (ipairs entries)]
     {:name entry.name :url (cat/ "/blog" entry.id) :date entry.date}))
 
@@ -24,7 +29,8 @@
                                   {:title "Blog Entries"
                                    :dst-path (cat/ paths.output self.name
                                                    "index.html")}
-                                  {:blog_links (ext-blog-links entries)})]]
+                                  {:epoch_to_str epoch-to-str
+                                   :blog_links (ext-blog-links entries)})]]
     (each [_i entry (ipairs parsed-entries)]
       (table.insert tree
                     {:title entry.name
@@ -41,11 +47,6 @@
 (λ top-entries [self paths ?limit]
   (let [data-root (cat/ paths.data self.name)
         entries (ext-blog-links (find-md-entries data-root))]
-    ;; From newest to oldest
-    (table.sort entries (fn [entry-a entry-b]
-                          (let [date-a (tonumber entry-a.date)
-                                date-b (tonumber entry-b.date)]
-                            (> date-a date-b))))
     (if (not= ?limit nil)
         (truncate-list entries ?limit)
         entries)))

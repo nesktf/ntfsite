@@ -1,9 +1,15 @@
 <div class="card">
-  <p>this is the blog main page</p>
-  <p>these are the entries</p>
-  <ul>
-  <% for _, page in ipairs(blog_links) do %>
-    <li><a href="<%= page.url %>"><%= page.name %></a></li>
-  <% end %>
-  </ul>
+  <h2 class="card-title">Blog entries</h2>
+  <div class="entry-button-cont">
+    <% for _, entry in ipairs(blog_links) do %>
+      <a href="<%= entry.url %>">
+        <div class="entry-button">
+          <div class="tag-container">
+            <p><%= entry.name %></p>
+            <p class="tag-name"><%= epoch_to_str(entry.date) %></p>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
 </div>
