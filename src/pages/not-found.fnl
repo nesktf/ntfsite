@@ -4,7 +4,8 @@
   (let [pages [(et:page-from-templ "404"
                                    {:title "Page Not Found :("
                                     :disable-sidebar true
-                                    :dst-path (cat/ paths.output "404.html")}
+                                    :dst-path (cat/ paths.output
+                                                    "not_found.html")}
                                    {})]]
     pages))
 
