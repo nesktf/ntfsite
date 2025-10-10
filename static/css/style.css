@@ -117,6 +117,25 @@ body {
   background-color: var(--bg-4);
 }
 
+.tex-image-inline {
+  vertical-align: middle;
+  height: 30px;
+  width: auto;
+}
+
+.tex-image-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tex-image-block {
+  height: 100px;
+  max-width: 350px;
+  display: block;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
 @media screen and (max-width: 768px) {
   .main-layout {
     flex-direction: column;

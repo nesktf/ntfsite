@@ -1,5 +1,5 @@
 (local lfs (require :lfs))
-(local filetype {:page 1 :file 2})
+(local filetype {:page 1 :file 2 :file-write 3})
 
 (λ read-file [path]
   (case (io.open path "r")

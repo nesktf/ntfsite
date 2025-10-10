@@ -1,3 +1,4 @@
+(local inspect (require :inspect))
 (local {: write-file : copy-file : filetype : split-dir-file : make-dir}
        (require :fs))
 
@@ -33,9 +34,12 @@
 (fn handle-copy-file [page]
   (copy-file page.src-path page.dst-path))
 
+(fn handle-write-file [page]
+  (write-file page.dst-path page.content))
+
 (fn write-page-files! [et page comp-date]
-  (if (= page.type filetype.page)
-      (handle-write-content et page comp-date)
+  (if (= page.type filetype.page) (handle-write-content et page comp-date)
+      (= page.type filetype.file-write) (handle-write-file page)
       (handle-copy-file page)))
 
 (let [paths (parse-paths)

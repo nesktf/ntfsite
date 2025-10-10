@@ -17,7 +17,13 @@ Here i have a funny list of things
 - **and a bold thing**
 
 ## This is a latex entry
-$$ F(t) = \int_{0}^{\infty} f(t)e^{-i \pi wt} dt$$
+This is an inline equation $a = 2$, with some text after
+
+And this is a display equation
+
+$$F(\omega) = \int_{0}^{\infty} f(t)e^{-i \pi \omega t} dt$$
+
+So we can see that effectively that $a = 2$ and $F(\omega) = \text{funny function}$
 
 ## This is a code block
 ```cpp

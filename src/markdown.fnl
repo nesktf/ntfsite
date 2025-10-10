@@ -8,15 +8,18 @@
         : cat/
         : file-exists?
         : delete-file
+        : filetype
         : split-dir-file} (require :fs))
 
-(λ compile-tex [paths equation ?inline]
+(λ compile-tex [paths equation inline?]
   (local tex-content-templ "
     \\documentclass[border=5pt]{standalone}
     \\usepackage{amsmath}
     \\usepackage{amssymb}
     \\usepackage[T1]{fontenc}
+    \\usepackage{xcolor} 
     \\begin{document}
+    \\color{white}
     \\begin{equation*}
     \\displaystyle
     %s
@@ -29,8 +32,8 @@
         tex-file (cat/ tex-dir "eq.tex")
         tex-pdf (cat/ tex-dir "eq.pdf")
         tex-svg (cat/ tex-dir "eq.svg")
-        post-equation (if (not ?inline)
-                          (.. "\\displaystyle" equation)
+        post-equation (if (not inline?)
+                          (.. "\\displaystyle " equation)
                           equation)
         tex-content (string.format tex-content-templ post-equation)
         tex-cmd (string.format tex-cmd-templ tex-dir tex-file)
@@ -64,7 +67,9 @@
             (_ name-raw) (split-dir-file (split-ext md-file.dst))
             cpy-files (icollect [_j file (ipairs files)]
                         (if (not (is-md-file? file))
-                            {:src (cat/ dir-path file) :dst file}
+                            {:type filetype.file
+                             :src (cat/ dir-path file)
+                             :dst file}
                             nil))
             (date _) (dir-name:match "^%d+")
             (dst _) (split-dir-file md-file.dst)]
@@ -79,12 +84,20 @@
                    {: dir-name :dir-path (cat/ root-path dir-name)}
                    nil))))
 
-(λ compile-md-entries [md-entries]
+(λ compile-md-entries [paths md-entries ?pre-process!]
   (icollect [_i {: id : name : date : md-file : cpy-files} (ipairs md-entries)]
     (let [luna-writer (lmrk.writer.html.new {})
           luna-parser (lmrk.reader.markdown.new luna-writer
                                                 {:link_attributes true})
-          md-content (read-file md-file.src)]
+          file-content (read-file md-file.src)
+          md-content (if ?pre-process!
+                         (?pre-process! {: id
+                                         : date
+                                         : name
+                                         :content file-content
+                                         :files cpy-files
+                                         : paths})
+                         file-content)]
       {: name : id : date :files cpy-files :content (luna-parser md-content)})))
 
 {: find-md-entries : compile-md-entries : compile-tex}
