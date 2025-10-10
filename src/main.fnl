@@ -12,7 +12,8 @@
   (let [paths {:templ (. arg 1)
                :src (. arg 2)
                :output (. arg 3)
-               :data (. arg 4)}]
+               :data (. arg 4)
+               :cache (. arg 5)}]
     (each [name path (pairs paths)]
       (when (not path)
         (on-die (string.format "Path '%s' missing" name)))

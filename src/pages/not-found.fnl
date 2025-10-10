@@ -1,12 +1,10 @@
 (local {: cat/} (require :fs))
 
-(λ gen-404-tree [_self {: et : paths}]
-  (let [pages [(et:page-from-templ "404"
-                                   {:title "Page Not Found :("
-                                    :disable-sidebar true
-                                    :dst-path (cat/ paths.output
-                                                    "not_found.html")}
-                                   {})]]
-    pages))
+(λ not-found-page-gen [{: et : paths}]
+  [(et:page-from-templ "404"
+                       {:title "Page Not Found :("
+                        :disable-sidebar true
+                        :dst-path (cat/ paths.output "not_found.html")}
+                       {})])
 
-{:name "404" :gen-tree gen-404-tree}
+{: not-found-page-gen}

@@ -10,7 +10,9 @@
 
 (λ write-file [path content]
   (case (io.open path "w")
-    file (file:write content)
+    file (do
+           (file:write content)
+           (file:close))
     (nil err) (values nil err)))
 
 (λ list-dir [dir-path]

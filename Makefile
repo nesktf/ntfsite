@@ -14,6 +14,7 @@ LUAPATH := ${LUA_PATH};./$(LUA_OUTPUT)/?.lua;./$(LUA_OUTPUT)/?/init.lua
 
 SITE_MAKER	:= $(LUA_OUTPUT)/main.lua
 OUTPUT_DIR	:= $(BUILD_DIR)/site
+CACHE_DIR 	:= $(BUILD_DIR)/cache
 
 .PHONY: site clean lua
 
@@ -36,7 +37,7 @@ $(OUTPUT_DIR)/: $(BUILD_DIR)/
 site: export LUA_PATH = $(LUAPATH)
 site: $(OUTPUT_DIR)/ lua 
 	@echo "- Compiling site templates..."
-	$(LUAINT) $(SITE_MAKER) $(TEMPL_DIR) $(SRC_DIR) $(OUTPUT_DIR) $(DATA_DIR)
+	$(LUAINT) $(SITE_MAKER) $(TEMPL_DIR) $(SRC_DIR) $(OUTPUT_DIR) $(DATA_DIR) $(CACHE_DIR)
 
 clean: $(BUILD_DIR)
 	rm -rf $(BUILD_DIR)

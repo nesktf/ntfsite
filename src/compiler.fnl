@@ -2,7 +2,9 @@
 (local {: list-dir : split-ext : read-file : cat/ : filetype} (require :fs))
 (local {: merge-tbls} (require :util))
 
-(λ inject [self templ-name ?params]
+(local et-mt {})
+
+(λ et-mt.inject [self templ-name ?params]
   (assert (. self._templs templ-name)
           (string.format "No template named \"%s\" found" templ-name))
   (let [base-args {:inject_from (λ [templ ?args]
@@ -11,15 +13,13 @@
         templ (. self._templs templ-name)]
     (templ templ-args)))
 
-(λ page-from-templ [self templ-name layout-params ?page-params]
+(λ et-mt.page-from-templ [self templ-name layout-params ?page-params]
   (let [content (self:inject templ-name ?page-params)]
     {:type filetype.page
      :title layout-params.title
      :disable-sidebar layout-params.disable-sidebar
      : content
      :dst-path layout-params.dst-path}))
-
-(local et-mt {: inject : page-from-templ})
 
 (λ et-load [paths]
   (let [et (setmetatable {} {:__index et-mt})

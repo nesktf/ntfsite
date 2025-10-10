@@ -1,9 +1,11 @@
 (local {: cat/} (require :fs))
 
-(λ gen-about-tree [_self {: et : paths}]
+(local about-page {:route "about"})
+
+(λ about-page-gen [{: et : paths}]
   [(et:page-from-templ "about"
                        {:title "About Me"
-                        :dst-path (cat/ paths.output "about/index.html")}
-                       {})])
+                        :dst-path (cat/ paths.output about-page.route
+                                        "index.html")} {})])
 
-{:name "about" :gen-tree gen-about-tree}
+{: about-page-gen}
