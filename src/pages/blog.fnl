@@ -1,7 +1,9 @@
 (local {: truncate-list : epoch-to-str} (require :util))
 (local {: cat/ : filetype} (require :fs))
 (local {: find-md-entries : compile-md-entries} (require :markdown))
-(local {: tex-md-pre-process} (require :latex))
+(local {: tex-md-inject} (require :latex))
+(local {: replace-img-dirs : replace-img-bodies : sanitize-code-blocks}
+       (require :postprocess))
 
 (local blog-page {:route "blog"})
 
@@ -20,23 +22,11 @@
 Given a compilation context, checks at `${paths.data}/blog` for markdown entries and builds an
 entire page tree with root at `${paths.output}/blog`.
 "
-  (fn replace-image-bodies [content]
-    (fn do-thing [start title end]
-      (local newstart (string.format "<div class=\"img-cont\">%s" start))
-      (local newend (string.format "title=\"%s\"%s<p class=\"img-caption\"><i>%s</i></p></div>"
-                                   title end title))
-      (.. newstart newend))
-
-    (content:gsub "(%<img%s-[^%>]*)title=\"([^\"]*)\"([^%>]*/%>)" do-thing))
-
-  (fn content-post-process [blog-path {:content entry-content :id entry-id}]
-    (let [entry-path (cat/ blog-path entry-id)
-          replaced-images (entry-content:gsub "%%%%DIR%%%%" (.. "/" entry-path))
-          replaced-code-start (replaced-images:gsub "<code>"
-                                                    "<div class=\"code-block\"><pre><code>")
-          replaced-code (replaced-code-start:gsub "</code>"
-                                                  "</code></pre></div>")]
-      (replace-image-bodies replaced-code)))
+  (fn content-post-process [blog-path {: content : id}]
+    (let [entry-path (cat/ blog-path id)
+          img-dirs (replace-img-dirs content entry-path)
+          img-bodies (replace-img-bodies img-dirs)]
+      (sanitize-code-blocks img-bodies)))
 
   (fn inject-blog-entry [et blog-path entry]
     (let [md_content (content-post-process blog-path entry)
@@ -46,7 +36,7 @@ entire page tree with root at `${paths.output}/blog`.
   (let [output-dir (cat/ paths.output blog-page.route)
         data-root (cat/ paths.data blog-page.route)
         entries (find-md-entries data-root)
-        parsed-entries (compile-md-entries paths entries tex-md-pre-process)
+        parsed-entries (compile-md-entries paths entries tex-md-inject)
         tree [(et:page-from-templ "blog"
                                   {:title "Blog Entries"
                                    :dst-path (cat/ paths.output blog-page.route

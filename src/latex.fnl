@@ -45,26 +45,25 @@ Returns a table with the tex equation and the source for an svg file with the re
       (delete-file tex-dir)
       {: equation : image})))
 
-(λ tex-md-pre-process [{: content : files : paths}]
+(λ tex-md-inject [{: content : files : paths}]
   "Replaces LaTeX equations in the format `$$<eq>$$` or `$<eq>$` inside a markdown page context.
 Renders each found equation as an SVG, appends them to the context files and replaces the original
 equation text with an <img> tag, wrapped around a <div> if its a block equation (`$$<eq>$$`).
 Returns a string with the new markdown content"
   (var eq-id 1)
 
-  (fn make-tag [inline? src title alt]
+  (fn make-tag [inline? src alt title]
     (if inline?
+        ;; No title in inline blocks
         (string.format "<img class=\"tex-image-inline\"
                              src=\"%%%%DIR%%%%/%s\"
-                             alt=\"%s\"
-                             title=\"%s\" />" src title
-                       alt)
+                             alt=\"%s\" />" src alt)
         (string.format "<div class=\"tex-image-cont\">
                           <img class=\"tex-image-block\"
                                src=\"%%%%DIR%%%%/%s\"
                                alt=\"%s\"
                                title=\"%s\" />
-                        </div>" src title alt)))
+                        </div>" src alt title)))
 
   (fn replace-eq [matched inline?]
     (let [{: equation : image} (compile-tex paths matched inline?)
@@ -81,4 +80,4 @@ Returns a string with the new markdown content"
   (let [first-replace (content:gsub "%$%$(.-)%$%$" #(replace-eq $1 false))]
     (first-replace:gsub "%$(.-)%$" #(replace-eq $1 true))))
 
-{: compile-tex : tex-md-pre-process}
+{: compile-tex : tex-md-inject}
