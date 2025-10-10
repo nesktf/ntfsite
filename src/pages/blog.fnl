@@ -6,6 +6,7 @@
 (local blog-page {:route "blog"})
 
 (λ ext-blog-links [entries]
+  "Get blog links with format `{:name <string> :url <string> :date <epoch>}`"
   ;; From newest to oldest
   (table.sort entries (fn [entry-a entry-b]
                         (let [date-a (tonumber entry-a.date)
@@ -15,6 +16,10 @@
     {:name entry.name :url (cat/ "/blog" entry.id) :date entry.date}))
 
 (λ blog-page-gen [{: et : paths}]
+  "Generate the blog page tree.
+Given a compilation context, checks at `${paths.data}/blog` for markdown entries and builds an
+entire page tree with root at `${paths.output}/blog`.
+"
   (fn content-post-process [blog-path {:content entry-content :id entry-id}]
     (let [entry-path (cat/ blog-path entry-id)]
       (entry-content:gsub "%%%%DIR%%%%" (.. "/" entry-path))))
@@ -49,6 +54,8 @@
     tree))
 
 (λ blog-top-entries [paths ?limit]
+  "Find the newest blog entries, up to `?limit`.
+Returns in a list with in the format `{:name <string> :url <string> :date <epoch>}`"
   (let [data-root (cat/ paths.data blog-page.route)
         entries (ext-blog-links (find-md-entries data-root))]
     (if (not= ?limit nil)

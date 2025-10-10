@@ -7,6 +7,8 @@
         : delete-file} (require :fs))
 
 (λ compile-tex [paths equation inline?]
+  "Compile a LaTeX equation that might be inline. Uses `paths.cache` as cache directory.
+Returns a table with the tex equation and the source for an svg file with the rendered equation."
   (local tex-content-templ "
     \\documentclass[border=5pt]{standalone}
     \\usepackage{amsmath}
@@ -44,6 +46,10 @@
       {: equation : image})))
 
 (λ tex-md-pre-process [{: content : files : paths}]
+  "Replaces LaTeX equations in the format `$$<eq>$$` or `$<eq>$` inside a markdown page context.
+Renders each found equation as an SVG, appends them to the context files and replaces the original
+equation text with an <img> tag, wrapped around a <div> if its a block equation (`$$<eq>$$`).
+Returns a string with the new markdown content"
   (var eq-id 0)
 
   (fn make-tag [inline? src title alt]
