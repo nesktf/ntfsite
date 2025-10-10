@@ -50,27 +50,27 @@ Returns a table with the tex equation and the source for an svg file with the re
 Renders each found equation as an SVG, appends them to the context files and replaces the original
 equation text with an <img> tag, wrapped around a <div> if its a block equation (`$$<eq>$$`).
 Returns a string with the new markdown content"
-  (var eq-id 0)
+  (var eq-id 1)
 
   (fn make-tag [inline? src title alt]
     (if inline?
         (string.format "<img class=\"tex-image-inline\"
                              src=\"%%%%DIR%%%%/%s\"
-                             title=\"%s\"
-                             alt=\"%s\" />" src title
+                             alt=\"%s\"
+                             title=\"%s\" />" src title
                        alt)
         (string.format "<div class=\"tex-image-cont\">
                           <img class=\"tex-image-block\"
                                src=\"%%%%DIR%%%%/%s\"
-                               title=\"%s\"
-                               alt=\"%s\" />
+                               alt=\"%s\"
+                               title=\"%s\" />
                         </div>" src title alt)))
 
   (fn replace-eq [matched inline?]
     (let [{: equation : image} (compile-tex paths matched inline?)
           image-file (string.format "eq_%d.svg" eq-id)
           img-tag (make-tag inline? image-file equation
-                            (string.format "eq_%d" eq-id))]
+                            (string.format "Equation %d" eq-id))]
       (table.insert files {:type filetype.file-write
                            :content image
                            :dst image-file})

@@ -20,9 +20,23 @@
 Given a compilation context, checks at `${paths.data}/blog` for markdown entries and builds an
 entire page tree with root at `${paths.output}/blog`.
 "
+  (fn replace-image-bodies [content]
+    (fn do-thing [start title end]
+      (local newstart (string.format "<div class=\"img-cont\">%s" start))
+      (local newend (string.format "title=\"%s\"%s<p class=\"img-caption\"><i>%s</i></p></div>"
+                                   title end title))
+      (.. newstart newend))
+
+    (content:gsub "(%<img%s-[^%>]*)title=\"([^\"]*)\"([^%>]*/%>)" do-thing))
+
   (fn content-post-process [blog-path {:content entry-content :id entry-id}]
-    (let [entry-path (cat/ blog-path entry-id)]
-      (entry-content:gsub "%%%%DIR%%%%" (.. "/" entry-path))))
+    (let [entry-path (cat/ blog-path entry-id)
+          replaced-images (entry-content:gsub "%%%%DIR%%%%" (.. "/" entry-path))
+          replaced-code-start (replaced-images:gsub "<code>"
+                                                    "<div class=\"code-block\"><pre><code>")
+          replaced-code (replaced-code-start:gsub "</code>"
+                                                  "</code></pre></div>")]
+      (replace-image-bodies replaced-code)))
 
   (fn inject-blog-entry [et blog-path entry]
     (let [md_content (content-post-process blog-path entry)

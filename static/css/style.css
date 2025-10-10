@@ -46,7 +46,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 500px;
+  min-width: 800px;
+  max-width: 1000px;
 }
 
 .card {
@@ -128,12 +129,32 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .tex-image-block {
   height: 100px;
   max-width: 350px;
   display: block;
   margin: 10px 0;
   border-radius: 4px;
+
+  background-color: var(--bg-2);
+}
+
+.code-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.code-block pre {
+  background-color: var(--bg-2);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.img-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {

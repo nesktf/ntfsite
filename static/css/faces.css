@@ -67,6 +67,5 @@ b {
 
 .aa pre {
   background-color: var(--bg-2);
-  border: 1px dashed var(--border-1);
   border-radius: 4px;
 }
