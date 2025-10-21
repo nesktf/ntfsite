@@ -5,7 +5,7 @@
 
 (λ index-page-gen [{: et : paths}]
   [(et:page-from-templ "index"
-                       {:title "nesktf's website"
+                       {:title "Home"
                         :dst-path (cat/ paths.output "index.html")}
                        {:epoch_to_str epoch-to-str
                         :projects (proj-top-entries paths 5)

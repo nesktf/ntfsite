@@ -18,7 +18,7 @@ Here i have a funny list of things
 ## This is a latex entry
 Fourier transform
 
-$$ F(\omega) = \int_{0}^{\infty} f(t)e^{-i \pi \omega t} dt $$
+$$ F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-i 2\pi \omega t} dt $$
 
 ## This is a code block
 ```cpp
