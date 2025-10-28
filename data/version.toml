@@ -1,0 +1,18 @@
+["v0.1.0"]
+timestamp = 1761673881
+title = "Initial website release"
+changes = [
+  "Markdown compiler for easy page redaction",
+  "HTML compiler for etlua templates",
+  "Parser for TOML metadata",
+  "Pages added: `about/`, `blog/`, `pages/`, `projects/`, `meta/`",
+  "Added a changelog and a random image on the main layout sidebar",
+  "Removed Herobrine",
+  "Added Kyouko",
+]
+todo = [
+  "Hash images to save some space in the long run",
+  "Design the `pages/` section properly",
+  "Add a simple lexer for syntax highlighting inside markdown entries",
+  "Fix styles for inline LaTeX equations",
+]

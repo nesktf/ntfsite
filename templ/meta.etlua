@@ -1,0 +1,26 @@
+<% if (versions and type(versions) == "table") then %>
+    <% for _, detail in ipairs(versions) do %>
+      <div class="card">
+        <h2 id="<%= detail.ver %>"><%= detail.ver %> - <%= detail.title %></h2>
+        <ul><li><p>Version date: <%= epoch_to_str(detail.timestamp) %></p></li></ul>
+
+        <h3>Changes</h3>
+        <ul>
+          <% for _, change in ipairs(detail.changes) do %>
+            <li><%- change %></li>
+          <% end %>
+        </ul>
+
+        <h3>TODO</h3>
+        <ul>
+          <% for _, todo in ipairs(detail.todo) do %>
+            <li><%- todo %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+<% else %>
+  <div class="card">
+    <p>Nothing to se here...</p>
+  </div>
+<% end %>

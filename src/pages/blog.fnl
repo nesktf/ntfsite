@@ -30,8 +30,19 @@ entire page tree with root at `${paths.output}/blog`.
 
   (fn inject-blog-entry [et blog-path entry]
     (let [md_content (content-post-process blog-path entry)
-          pub_date (epoch-to-str entry.date)]
-      (et:inject "markdown-entry" {: md_content : pub_date})))
+          pub_date (epoch-to-str entry.date)
+          mod_date (epoch-to-str entry.date-modified)
+          tag-string (accumulate [str "" i tag (ipairs entry.tags)]
+                       (if (= i (length entry.tags))
+                           (.. str tag)
+                           (.. str tag ", ")))]
+      (et:inject "blog-entry"
+                 {: md_content
+                  : pub_date
+                  : mod_date
+                  :tag_string tag-string
+                  :entry_title entry.name
+                  :entry_subtitle entry.subtitle})))
 
   (let [output-dir (cat/ paths.output blog-page.route)
         data-root (cat/ paths.data blog-page.route)

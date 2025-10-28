@@ -19,4 +19,7 @@
 (λ epoch-to-str [epoch]
   (os.date "%Y/%m/%d %H:%M (GMT-3)" (tonumber epoch)))
 
-{: truncate-list : merge-tbls : epoch-to-str}
+(λ epoch-to-str-day [epoch]
+  (os.date "%Y/%m/%d" (tonumber epoch)))
+
+{: truncate-list : merge-tbls : epoch-to-str : epoch-to-str-day}

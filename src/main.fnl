@@ -1,7 +1,8 @@
-(local inspect (require :inspect))
 (local {: write-file : copy-file : filetype : split-dir-file : make-dir}
        (require :fs))
 
+(local {: parse-versions : comp-date : set-comp-date!} (require :meta))
+(local {: epoch-to-str-day : truncate-list} (require :util))
 (local {: et-load} (require :compiler))
 (local {: load-pages} (require :pages))
 
@@ -21,11 +22,16 @@
       (print (string.format "- Using path '%s' for %s directory" path name)))
     paths))
 
-(fn handle-write-content [et page comp-date]
-  (let [content (et:inject "layout"
+(fn handle-write-content [et page meta]
+  (let [versions (icollect [_i detail (ipairs meta.versions)]
+                   {:title detail.title
+                    :ver detail.ver
+                    :date (epoch-to-str-day detail.timestamp)})
+        content (et:inject "layout"
                            {:content page.content
-                            :comp_date comp-date
+                            :comp_date (comp-date)
                             :disable_sidebar page.disable-sidebar
+                            : versions
                             :title page.title})
         (dir _file) (split-dir-file page.dst-path)]
     (make-dir dir)
@@ -37,15 +43,16 @@
 (fn handle-write-file [page]
   (write-file page.dst-path page.content))
 
-(fn write-page-files! [et page comp-date]
-  (if (= page.type filetype.page) (handle-write-content et page comp-date)
+(fn write-page-files! [et page meta]
+  (if (= page.type filetype.page) (handle-write-content et page meta)
       (= page.type filetype.file-write) (handle-write-file page)
       (handle-copy-file page)))
 
 (let [paths (parse-paths)
-      comp-date (os.date "%Y/%m/%d %H:%M (GMT-3)")
+      version-meta (parse-versions paths)
       et-ctx (et-load paths)
       pages (load-pages et-ctx paths)]
+  (set-comp-date!)
   (each [_i page (ipairs pages)]
-    (write-page-files! et-ctx page comp-date))
-  (print (string.format "- Page compiled at %s " comp-date)))
+    (write-page-files! et-ctx page {:versions (truncate-list version-meta 5)}))
+  (print (string.format "- Page compiled at %s " (comp-date))))

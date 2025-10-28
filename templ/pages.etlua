@@ -1,7 +1,7 @@
 <div class="card">
   <h2 class="card-title">Other pages</h2>
   <div class="card-content" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-    <img src="/image/kyouko_pc.png" />
+    <img src="/image/funnies/kyouko_pc.png" />
     <p>under construction!!!!</p>
   </div>
 </div>

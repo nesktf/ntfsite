@@ -157,6 +157,11 @@ body {
   align-items: center;
 }
 
+#random-image {
+  max-height: 200px;
+  width: auto;
+}
+
 @media screen and (max-width: 768px) {
   .main-layout {
     flex-direction: column;

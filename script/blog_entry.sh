@@ -11,8 +11,25 @@ fi
 slug=$(printf "%s" "${1// /-}" | tr '[:upper:]' '[:lower:]')
 timestamp=$(date +'%s')
 docname="${timestamp}-${slug//\/}"
-md_title="${1//\//\\\\}"
+entry_file="${ENTRY_DIR}/${docname}/index.md"
 
 mkdir -p "${ENTRY_DIR}/${docname}"
-echo "# ${1}" > "${ENTRY_DIR}/${docname}/${md_title}.md"
-${EDITOR} "${ENTRY_DIR}/${docname}/${md_title}.md"
+
+cat <<EOM > "${entry_file}"
++++
+[BLOG_ENTRY]
+title = "${1}"
+subtitle = ""
+timestamp = ${timestamp}
+slug = "${docname}"
+tags = []
++++
+
+
+EOM
+
+if [[ ${2} == "-n" ]]; then
+  touch "${entry_file}"
+else
+  ${EDITOR} "${entry_file}"
+fi
