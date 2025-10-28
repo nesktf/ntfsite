@@ -15,4 +15,6 @@ todo = [
   "Design the `pages/` section properly",
   "Add a simple lexer for syntax highlighting inside markdown entries",
   "Fix styles for inline LaTeX equations",
+  "Fix inline code block formatting in markdown entries",
+  "Fix new line bugs inside code blocks in markdown entries",
 ]
